@@ -12,9 +12,10 @@ def base(request):
 def publish_message(request):
     if request.method == 'POST':
         text = request.POST.get('user_input')
-        msg = json.dumps({"mensagem": text}, ensure_ascii=False)
-        request_data = json.loads(request.body)
-        rc, mid = mqtt_client.publish(request_data['topic'], [msg])
+
+        msg = json.dumps({"topic": "tomada/mqtt", "mensagem": f"{text}"}, ensure_ascii=False)
+        request_data = json.loads(msg)
+        rc, mid = mqtt_client.publish(request_data['topic'], request_data['mensagem'])
         return JsonResponse({'code': rc})
         
   
