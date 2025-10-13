@@ -1,6 +1,6 @@
 {% include 'mqtt_app/partials/doctype.html' %}
 <body>
-    <form method="POST">
+    <form action="{% url 'publish' %}" method="POST">
     {% csrf_token %}
     <label for="user_input">Insira o código da tomada</label>
     <input type="text" id="user_input" name="user_input">

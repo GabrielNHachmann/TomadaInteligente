@@ -10,12 +10,11 @@ def base(request):
 
 
 def publish_message(request):
-    text, msg = None
     if request.method == 'POST':
         text = request.POST.get('user_input')
         msg = json.dumps({"mensagem": text}, ensure_ascii=False)
         request_data = json.loads(request.body)
-        rc, mid = mqtt_client.publish(request_data['topic'], request_data[msg])
+        rc, mid = mqtt_client.publish(request_data['topic'], [msg])
         return JsonResponse({'code': rc})
-    elif request.method == 'GET':
+        
   
