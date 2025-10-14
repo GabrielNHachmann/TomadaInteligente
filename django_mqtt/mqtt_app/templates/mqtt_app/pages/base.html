@@ -1,9 +1,36 @@
 {% include 'mqtt_app/partials/doctype.html' %}
-<body>
-    <form action="{% url 'publish' %}" method="POST">
+
+    <!-- CONTEÚDO PRINCIPAL: TELA DE CONEXÃO -->
+    <main class="main-content container">
+        
+        <div class="connection-card">
+            <h1>Conectar Tomada</h1>
+            <p style="color: #6B7280; margin-bottom: 2rem;">Insira o código de identificação do seu dispositivo para começar a controlar.</p>
+
+            <form action="#" method="POST">
+                <div class="form-group">
+                    <label for="device-code">Código da Tomada Inteligente</label>
+                    <input type="text" 
+                           id="device-code" 
+                           class="input-field" 
+                           placeholder="Ex: SP-001-XYZ" 
+                           maxlength="15" 
+                           required>
+                </div>
+
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-link"></i> Conectar
+                </button>
+            </form>
+        </div>
+
+    </main>
+
+    <!--<form action="{% url 'publish' %}" method="POST">
     {% csrf_token %}
     <label for="user_input">Insira o código da tomada</label>
     <input type="text" id="user_input" name="user_input">
-    <button type="submit">Enviar</button>
+    <button type="submit">Enviar</button>-->
 </form>
 </body>
+</html>
