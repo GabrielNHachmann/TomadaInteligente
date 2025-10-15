@@ -1,3 +1,52 @@
 {% include 'mqtt_app/partials/doctype.html' %}
 <body>
     {% include 'mqtt_app/partials/sidebarheader.html' %}
+    <!-- CONTEÚDO PRINCIPAL: PAINEL DE CONTROLE DA TOMADA ÚNICA -->
+    <main class="main-content container">
+        
+        <h1 style="margin-bottom: 0.5rem;">Controle da Tomada</h1>
+        <p style="color: #6B7280; font-size: 1.1rem;">Ações em tempo real e visualização de dados.</p>
+
+        <div class="control-card" data-device-id="sp-001">
+            
+            <div class="card-icon-header">
+                <i class="fas fa-home control-icon"></i>
+                <!-- Botão de Configurações do Dispositivo (para renomear, etc.) -->
+                <button class="settings-btn" title="Configurações do Dispositivo">
+                    <i class="fas fa-ellipsis-v"></i>
+                </button>
+            </div>
+
+            <h2>Tomada Principal da Sala</h2>
+            <p class="device-id-display">ID: SP-001-XYZ | Local: Sala de Estar</p>
+
+            <!-- Área Principal de Ligar/Desligar (Inicialmente LIGADO) -->
+            <div id="main-toggle-area" class="main-toggle-area status-on-bg">
+                
+                <button id="main-power-btn" class="main-power-btn" onclick="toggleMainPower('sp-001', true)" title="Clique para Desligar">
+                    <i class="fas fa-power-off"></i>
+                </button>
+                
+                <p id="main-status-text">DISPOSITIVO LIGADO</p>
+            </div>
+
+            <!-- Métricas de Uso -->
+            <div class="metrics-container">
+                <div class="metric-box">
+                    <span class="metric-value">55 W</span>
+                    <span class="metric-label">Consumo Atual</span>
+                </div>
+                <div class="metric-box">
+                    <span class="metric-value">2.4 kWh</span>
+                    <span class="metric-label">Uso Hoje</span>
+                </div>
+                <div class="metric-box">
+                    <span class="metric-value">3</span>
+                    <span class="metric-label">Agendamentos Ativos</span>
+                </div>
+            </div>
+        </div>
+        
+    </main>
+</body>
+</html>

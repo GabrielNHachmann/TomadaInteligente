@@ -12,7 +12,7 @@ def home(request):
     return render(request, 'mqtt_app/pages/home.html')
 
 def gerenciar(request):
-    return render(request, 'mqtt_app/pages/home.html')
+    return render(request, 'mqtt_app/pages/gerenciar.html')
 
 
 def publish_message(request):
