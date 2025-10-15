@@ -1,14 +1,13 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Smart Outlets</title>
-    <link rel="stylesheet" href="{% static 'css/mqtt_app.css' %}"> 
-    
-    <script defer src="{% static 'js/script.js' %}"></script> 
+    <link rel="stylesheet" href="{% static 'mqtt_app/css/style.css' %}">
+    <script type="text/javascript" src="{% static 'mqtt_app/js/script.js' %}"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
-<body>
-    {% include 'mqtt_app/partials/header.html' %}
-    {% include 'mqtt_app/partials/sidebar.html' %}

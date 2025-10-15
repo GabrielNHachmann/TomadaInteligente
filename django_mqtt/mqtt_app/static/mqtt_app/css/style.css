@@ -1,17 +1,19 @@
 /* --------------------------------------------
          * CSS CONSOLIDADO (Tema: Azul e Branco)
-         * Inclui Estilos Globais, Header, Sidebar e o Novo Form de Conexão
+         * Inclui Estilos Globais, Header, Sidebar e o Novo Card de Sucesso
          * --------------------------------------------
          */
         
         /* 1. Variáveis e Configurações Globais */
         :root {
+            /* Cores */
             --color-primary: #1E3A8A;   /* Azul Escuro Principal */
             --color-secondary: #3B82F6; /* Azul Médio (Destaques) */
             --color-text-dark: #1F2937; 
             --color-text-light: #F9FAFB;
             --color-background: #F4F7FC; 
             --color-card-background: #FFFFFF;
+            --color-success: #10B981;   /* Verde para Sucesso/Status ON */
             --font-family-main: 'Inter', sans-serif;
             --shadow-light: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
             --border-radius: 0.75rem; 
@@ -54,7 +56,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center; /* Centraliza o conteúdo (Form de Conexão) */
+            justify-content: center; /* Centraliza o card de sucesso na tela */
             text-align: center;
         }
         
@@ -175,69 +177,42 @@
         }
 
 
-        /* 6. Estilos Específicos da Tela de Conexão */
-        .connection-card {
+        /* 6. Estilos Específicos da Tela de SUCESSO */
+        .success-card {
             background-color: var(--color-card-background);
             border-radius: var(--border-radius);
-            box-shadow: var(--shadow-light);
-            padding: 2.5rem;
+            box-shadow: 0 10px 20px rgba(0, 150, 0, 0.15); /* Sombra suave esverdeada */
+            padding: 3rem 2.5rem;
             text-align: center;
             width: 100%;
-            max-width: 400px; /* Largura controlada */
-            margin-top: -10vh; /* Puxa um pouco para cima para centralizar visualmente */
+            max-width: 450px;
+            margin-top: -10vh; /* Ajusta a centralização visualmente */
+            border: 3px solid var(--color-success); /* Borda verde sólida */
         }
         
-        .form-group {
-            margin-bottom: 1.5rem;
-            text-align: left;
+        .success-icon {
+            color: var(--color-success);
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: bounce 0.8s ease-in-out;
         }
 
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
+        /* Animação simples para o ícone de sucesso */
+        @keyframes bounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .success-card h1 {
             color: var(--color-primary);
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
         }
 
-        .input-field {
-            width: 100%;
-            padding: 0.8rem 1rem;
-            border: 2px solid #D1D5DB;
-            border-radius: 0.5rem;
+        .success-card p {
+            color: #6B7280;
+            margin-bottom: 0;
             font-size: 1.1rem;
-            color: var(--color-text-dark);
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-            text-align: center; /* Centraliza o texto do input */
-            font-weight: 600;
-        }
-
-        .input-field:focus {
-            border-color: var(--color-secondary);
-            outline: none;
-            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.3); /* Sombra azul suave */
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 0.9rem 1.5rem;
-            border-radius: var(--border-radius);
-            font-size: 1.1rem;
-            font-weight: 600;
-            text-decoration: none;
-            cursor: pointer;
-            border: none;
-            transition: background-color 0.3s ease, transform 0.1s ease;
-            width: 100%;
-        }
-
-        .btn-primary {
-            background-color: var(--color-primary);
-            color: var(--color-text-light);
-        }
-
-        .btn-primary:hover {
-            background-color: #15317E; 
-            transform: translateY(-1px);
         }
 
         /* 7. Rodapé (Footer) */
@@ -260,12 +235,12 @@
                 font-size: 1.5rem;
             }
         
-            .connection-card {
-                padding: 2rem 1.5rem;
+            .success-card {
+                padding: 2.5rem 1.5rem;
+                max-width: 90%;
             }
         
-            .btn {
-                padding: 0.8rem 1rem;
-                font-size: 1rem;
+            .success-card h1 {
+                font-size: 1.75rem;
             }
         }

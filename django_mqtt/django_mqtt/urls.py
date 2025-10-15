@@ -21,5 +21,7 @@ from mqtt_app import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.base, name='base'),
+    path('home/', views.home, name='home'),
+    
     path('publish/', views.publish_message, name='publish'),
 ]
