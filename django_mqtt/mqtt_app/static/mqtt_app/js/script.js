@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('DOMContentLoaded', () => {
             const sidebar = document.getElementById('sidebar');
             const toggleButton = document.getElementById('menu-toggle');
             const overlay = document.getElementById('sidebar-overlay');
@@ -24,15 +24,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 overlay.addEventListener('click', toggleSidebar);
             }
 
-            // Fechar ao clicar em um link da sidebar (permitindo a navegação para a nova página)
+            // A navegação ocorre após o clique, fechando a sidebar
             const sidebarLinks = sidebar.querySelectorAll('.sidebar-nav a');
             sidebarLinks.forEach(link => {
-                link.addEventListener('click', (e) => {
-                    // Aqui a navegação real para o href (e.g., 'cadastro.html') acontecerá
-                    // A sidebar fecha antes de mudar de página
+                link.addEventListener('click', () => {
+                    // Remove a classe 'is-open' antes de navegar
                     sidebar.classList.remove('is-open');
                     overlay.classList.remove('is-open');
-                    // Não usamos e.preventDefault() para permitir que a navegação ocorra
                 });
             });
         });
