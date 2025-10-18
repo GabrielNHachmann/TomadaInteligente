@@ -337,3 +337,98 @@
                 font-size: 1.2rem;
             }
         }
+
+        /* ... (restante do CSS fornecido para control-card) ... */
+        .card-icon-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; }
+        .control-icon { color: var(--color-secondary); font-size: 3rem; }
+        .settings-btn { background: none; border: none; color: #9CA3AF; font-size: 1.25rem; cursor: pointer; transition: color 0.2s ease; }
+        .settings-btn:hover { color: var(--color-primary); }
+        .control-card h2 { font-size: 2rem; margin-bottom: 0.5rem; text-align: left; }
+        .device-id-display { font-size: 0.9rem; color: #6B7280; text-align: left; margin-bottom: 2rem; font-weight: 500; }
+        .main-toggle-area { border-radius: var(--border-radius); padding: 2.5rem 1rem; margin-bottom: 2rem; transition: background-color 0.4s ease; }
+        .status-on-bg { background-color: var(--color-success); }
+        .status-off-bg { background-color: var(--color-danger); }
+        .main-power-btn { width: 100px; height: 100px; border-radius: 50%; border: 4px solid var(--color-text-light); background: none; color: var(--color-text-light); font-size: 3rem; cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease; margin-bottom: 1rem; }
+        .main-power-btn:hover { transform: scale(1.05); box-shadow: 0 0 15px rgba(255, 255, 255, 0.5); }
+        #main-status-text { color: var(--color-text-light); font-size: 1.5rem; font-weight: 700; margin: 0; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); }
+        .metrics-container { display: flex; justify-content: space-around; gap: 1rem; }
+        .metric-box { background-color: var(--color-background); border-radius: 0.5rem; padding: 0.75rem; flex-grow: 1; box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05); }
+        .metric-value { display: block; font-size: 1.2rem; font-weight: 700; color: var(--color-primary); }
+        .metric-label { display: block; font-size: 0.8rem; color: #6B7280; margin-top: 0.2rem; }
+
+        /* Estilos dos Seletores de Dia */
+        .day-label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            border: 2px solid var(--color-gray-border);
+            cursor: pointer;
+            transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #4B5563; 
+        }
+        .day-checkbox:checked + .day-label {
+            background-color: var(--color-secondary); 
+            color: white;
+            border-color: var(--color-secondary);
+            box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
+        }
+
+        .card {
+            background-color: var(--color-card-background);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-light);
+        }
+
+        /* Estilos de Formulário */
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            color: var(--color-text-dark);
+        }
+        .input-field {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--color-gray-border);
+            border-radius: 0.5rem;
+            background-color: #f9fafb;
+            transition: border-color 0.2s;
+        }
+        .input-field:focus {
+            border-color: var(--color-secondary);
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2); /* RGB do secondary */
+            outline: none;
+        }
+        .btn-primary {
+            background-color: var(--color-secondary); /* Usa cor de destaque */
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: background-color 0.2s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .btn-primary:hover {
+            background-color: #2563eb; /* Um tom ligeiramente mais escuro do secondary */
+        }
+
+        /* 9. ESTILOS ESPECÍFICOS DO TEMPORIZADOR (Adaptados ao novo tema) */
+        .scheduler-card {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .schedule-item {
+            border-left: 5px solid var(--color-secondary); /* Destaque com o Azul Médio */
+            border-radius: var(--border-radius);
+        }

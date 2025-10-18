@@ -14,6 +14,9 @@ def home(request):
 def gerenciar(request):
     return render(request, 'mqtt_app/pages/gerenciar.html')
 
+def temporizador(request):
+    return render(request, 'mqtt_app/pages/temporizador.html')
+
 
 def publish_message(request):
     if request.method == 'POST':

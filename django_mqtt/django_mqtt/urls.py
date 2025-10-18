@@ -23,6 +23,7 @@ urlpatterns = [
     path('', views.base, name='base'),
     path('home/', views.home, name='home'),
     path('gerenciar/', views.gerenciar, name='gerenciar'),
+    path('temporizador/', views.temporizador, name='temporizador'),
     
     path('publish/', views.publish_message, name='publish'),
 ]
