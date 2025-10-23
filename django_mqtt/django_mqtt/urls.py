@@ -24,6 +24,7 @@ urlpatterns = [
     path('home/', views.home, name='home'),
     path('gerenciar/', views.gerenciar, name='gerenciar'),
     path('temporizador/', views.temporizador, name='temporizador'),
+    path('historico/', views.historico, name='historico'),
     
     path('publish/', views.publish_message, name='publish'),
 ]

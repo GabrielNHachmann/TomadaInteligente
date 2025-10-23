@@ -17,6 +17,9 @@ def gerenciar(request):
 def temporizador(request):
     return render(request, 'mqtt_app/pages/temporizador.html')
 
+def historico(request):
+    return render(request, 'mqtt_app/pages/historico.html')
+
 
 def publish_message(request):
     if request.method == 'POST':
