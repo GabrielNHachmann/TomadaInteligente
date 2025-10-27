@@ -1,6 +1,5 @@
 {% include 'mqtt_app/partials/doctype.html' %}
 <body>
-    {% include 'mqtt_app/partials/sidebarheader.html' %}
 
     <main class="main-content container">
         
@@ -8,7 +7,7 @@
             <h1>Conectar Tomada</h1>
             <p style="color: #6B7280; margin-bottom: 2rem;">Insira o código de identificação do seu dispositivo para começar a controlar.</p>
 
-            <form action="{% url 'publish' %}" method="POST">
+            <form action="{% url 'codigo' %}" method="GET">
                 {% csrf_token %}
                 <div class="form-group">
                     <label for="user_input">Código da Tomada Inteligente</label>
@@ -23,6 +22,7 @@
                 <button type="submit" class="btn btn-primary">
                     <i class="fas fa-link"></i> Conectar
                 </button>
+        
             </form>
         </div>
 

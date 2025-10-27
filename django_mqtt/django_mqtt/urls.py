@@ -26,5 +26,8 @@ urlpatterns = [
     path('temporizador/', views.temporizador, name='temporizador'),
     path('historico/', views.historico, name='historico'),
     
-    path('publish/', views.publish_message, name='publish_sucesso'),
+    path('publish_ligar/', views.publish_message_ligar, name='publish_ligar'),
+    path('publish_desligar/', views.publish_message_desligar, name='publish_desligar'),
+    path('publish_temporizador/', views.publish_message_temporizador, name='publish_temporizador'),
+    path('codigo/', views.codigo, name='codigo'),
 ]
