@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from models import Codigo
 
 # Create your views here.
 import json
@@ -29,5 +30,13 @@ def publish_message(request):
         request_data = json.loads(msg)
         rc, mid = mqtt_client.publish(request_data['topic'], request_data['mensagem'])
         return render(request, 'mqtt_app/pages/home.html')
+
+def codigo(request):
+    if request.method == 'GET': 
+        codigo = Codigo.objects.get(id=1)
+        if codigo == 123:
+            return render(request, 'mqtt_app/pages/home.html')
+        else:
+            return render(request, )
         
   
