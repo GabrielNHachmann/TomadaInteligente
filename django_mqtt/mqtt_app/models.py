@@ -9,9 +9,3 @@ class Historico(models.Model):
 
     def _str_(self):
         return self.nome
-
-class Codigo(models.Model):
-    codigo = models.IntegerField('12345')
-
-    def _str_(self):
-        return self.nome

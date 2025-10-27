@@ -217,3 +217,7 @@ document.addEventListener('DOMContentLoaded', () => {
             //listContainer.innerHTML = mockHTML;
         }
 
+        import { createIcons, Power, Plug, AlertCircle } from 'https://cdn.jsdelivr.net/npm/lucide-esm@latest/dist/lucide.esm.js';
+        document.addEventListener('DOMContentLoaded', () => {
+            createIcons({ icons: { Power, Plug, AlertCircle } });
+        });

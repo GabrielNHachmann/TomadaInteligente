@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from .models import Codigo
 
 # Create your views here.
 import json
@@ -29,6 +28,7 @@ def publish_message_ligar(request):
         msg = json.dumps({"topic": "tomada/mqtt", "mensagem": f"{text}"}, ensure_ascii=False)
         request_data = json.loads(msg)
         rc, mid = mqtt_client.publish(request_data['topic'], request_data['mensagem'])
+        return render(request, 'mqtt_app/pages/gerenciar.html')
 
 
 def publish_message_desligar(request):
