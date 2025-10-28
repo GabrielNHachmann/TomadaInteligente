@@ -23,7 +23,7 @@ def historico(request):
 
 def publish_message_ligar(request):
     if request.method == 'POST':
-        text = request.POST.get('user_input')
+        text = '1'
 
         msg = json.dumps({"topic": "tomada/mqtt", "mensagem": f"{text}"}, ensure_ascii=False)
         request_data = json.loads(msg)
@@ -33,11 +33,12 @@ def publish_message_ligar(request):
 
 def publish_message_desligar(request):
     if request.method == 'POST':
-        text = request.POST.get('user_input')
+        text = '2'
 
         msg = json.dumps({"topic": "tomada/mqtt", "mensagem": f"{text}"}, ensure_ascii=False)
         request_data = json.loads(msg)
         rc, mid = mqtt_client.publish(request_data['topic'], request_data['mensagem'])
+        return render(request, 'mqtt_app/pages/gerenciar.html')
 
 
 def publish_message_temporizador(request):
