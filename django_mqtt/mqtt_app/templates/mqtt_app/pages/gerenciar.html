@@ -1,117 +1,58 @@
 {% include 'mqtt_app/partials/doctype.html' %}
-<body class="min-h-screen p-6">
-
-    <!-- CABEÇALHO ADICIONADO AQUI -->
-    <header class="bg-indigo-600 text-white p-4 rounded-xl shadow-lg w-full max-w-sm mx-auto flex items-center justify-center space-x-2">
-        {% include 'mqtt_app/partials/sidebarheader.html' %}
-    </header>
-
-    <!-- Container Principal do Controle (Centralizado Horizontalmente) -->
-    <div class="bg-white shadow-2xl rounded-3xl p-8 sm:p-10 w-full max-w-sm transition-all duration-300 text-center border-t-8 border-indigo-500 mx-auto mt-6">
-        
-        <div class="flex justify-center mb-6">
-            <!-- Ícone da Tomada (Maior e mais dinâmico) -->
-            <i data-lucide="plug" id="plug-icon" class="w-16 h-16 text-gray-400 transition-colors duration-300"></i>
-        </div>
-        
-        <h1 class="text-3xl font-extrabold text-gray-900 mb-1">Tomada da Sala</h1>
-        <p class="text-indigo-600 font-medium mb-8">Controlo de Energia Inteligente</p>
-
-        <!-- Indicador de Estado Simplificado (LIGADA / DESLIGADA) como um "pill" -->
-        <div class="mb-8 p-0 rounded-full inline-flex transition-colors duration-300" id="status-indicator">
-            <p id="status-text" class="text-xl font-extrabold tracking-wider transition-colors duration-300 px-6 py-2 rounded-full shadow-lg">DESLIGADA</p>
-        </div>
-
-        <!-- Controles (Botões) - Mais proeminentes e com sombra mais forte -->
-        <div class="flex flex-col space-y-4">
-            
-            <!-- Botão Ligar -->
-        <form action="{% url 'publish_ligar' %}" method="POST" class="mb-3">
-            {% csrf_token %}
-            <button type="submit" class="btn btn-primary btn-lg">
-            <i class="fas fa-plus me-2"></i> Ligar
-            </button>
-        </form>
-            
-            <!-- Botão Desligar -->
-            <form action="{% url 'publish_desligar' %}" method="POST" class="mb-3">
-            {% csrf_token %}
-            <button type="submit" class="btn btn-primary btn-lg">
-            <i class="fas fa-plus me-2"></i> desligar
-            </button>
-        </form>
-        </div>
-        
-    </div>
-
+{% include 'mqtt_app/partials/sidebarheader.html' %}
     <script>
-        // Variável de Estado
-        let isPowerOn = false;
-
-        // Elementos DOM
-        const turnOnBtn = document.getElementById('turn-on-btn');
-        const turnOffBtn = document.getElementById('turn-off-btn');
-        const statusText = document.getElementById('status-text');
-        const plugIcon = document.getElementById('plug-icon');
-
-        /**
-         * Atualiza o estado visual do painel (botões, indicador, ícone).
-         */
-        function updateUI() {
-            // Limpa classes de cor/sombra dinâmicas
-            statusText.classList.remove('bg-green-500', 'text-white', 'bg-red-500');
-            plugIcon.classList.remove('text-green-500', 'text-gray-400');
-
-            if (isPowerOn) {
-                // Estado LIGADO
-                turnOnBtn.disabled = true;
-                turnOffBtn.disabled = false;
-                
-                // Texto e Cores do Status (Apenas LIGADA)
-                statusText.textContent = 'LIGADA';
-                statusText.classList.add('bg-green-500', 'text-white');
-                
-                // Ícone da Tomada
-                plugIcon.classList.add('text-green-500');
-
-            } else {
-                // Estado DESLIGADO
-                turnOnBtn.disabled = false;
-                turnOffBtn.disabled = true;
-
-                // Texto e Cores do Status (Apenas DESLIGADA)
-                statusText.textContent = 'DESLIGADA';
-                statusText.classList.add('bg-red-500', 'text-white');
-                
-                // Ícone da Tomada
-                plugIcon.classList.add('text-gray-400');
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
             }
         }
-
-        /**
-         * Alterna o estado da tomada.
-         * @param {boolean} shouldTurnOn O novo estado desejado (true para Ligar, false para Desligar).
-         */
-        function togglePower(shouldTurnOn) {
-            // Impede ações desnecessárias ou redundantes
-            if (isPowerOn === shouldTurnOn) {
-                return;
-            }
-
-            // Simulação de ação
-            isPowerOn = shouldTurnOn;
-            
-            // Atualiza a interface visual
-            updateUI();
-        }
-
-        // Inicialização
-        document.addEventListener('DOMContentLoaded', () => {
-            // Estado inicial é DESLIGADO
-            isPowerOn = false;
-            updateUI();
-        });
     </script>
+    <!-- Inclui Font Awesome para ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLMD5G4Wb9U6C30f89/2XpE0F0M3T7T/sP1E2V4m6b/X+Kx4t4N4Z6E5/gO6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* Define a fonte Inter (caso o CDN do Tailwind não pegue) */
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
 
+    <div class="bg-white p-8 md:p-12 rounded-2xl shadow-2xl w-full max-w-sm flex flex-col items-center space-y-6">
+        <h1 class="text-3xl font-bold text-gray-800 mb-4">Controle de Dispositivo</h1>
+
+        <!-- Botão Ligar (Estilo Verde/Sucesso) -->
+        <form action="{% url 'publish_ligar' %}" method="POST" class="w-full">
+            {% csrf_token %}
+            <button type="submit"
+                class="w-full flex items-center justify-center
+                       bg-emerald-500 hover:bg-emerald-600 active:bg-emerald-700
+                       text-white text{% url 'publish_ligar' %}-xl font-bold
+                       py-4 px-6 rounded-xl transition duration-200
+                       shadow-lg shadow-emerald-500/50 hover:shadow-xl hover:shadow-emerald-600/60
+                       transform hover:scale-[1.02] focus:outline-none focus:ring-4 focus:ring-emerald-300">
+                <i class="fas fa-toggle-on text-2xl me-3"></i> Ligar
+            </button>
+        </form>
+
+        <!-- Separador Visual -->
+        <div class="h-px w-full bg-gray-200"></div>
+
+        <!-- Botão Desligar (Estilo Vermelho/Perigo) -->
+        <form action="{% url 'publish_desligar' %}" method="POST" class="w-full">
+            {% csrf_token %}
+            <button type="submit"
+                class="w-full flex items-center justify-center
+                       bg-red-500 hover:bg-red-600 active:bg-red-700
+                       text-white text-xl font-bold
+                       py-4 px-6 rounded-xl transition duration-200
+                       shadow-lg shadow-red-500/50 hover:shadow-xl hover:shadow-red-600/60
+                       transform hover:scale-[1.02] focus:outline-none focus:ring-4 focus:ring-red-300">
+                <i class="fas fa-toggle-off text-2xl me-3"></i> Desligar
+            </button>
+        </form>
+    </div>
 </body>
 </html>
