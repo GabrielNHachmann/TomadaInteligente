@@ -41,13 +41,32 @@ def publish_message_desligar(request):
         return render(request, 'mqtt_app/pages/gerenciar.html')
 
 
-def publish_message_temporizador(request):
+def publish_message_10s(request):
     if request.method == 'POST':
-        text = request.POST.get('user_input')
+        text = '3'
 
         msg = json.dumps({"topic": "tomada/mqtt", "mensagem": f"{text}"}, ensure_ascii=False)
         request_data = json.loads(msg)
         rc, mid = mqtt_client.publish(request_data['topic'], request_data['mensagem'])
+        return render(request, 'mqtt_app/pages/temporizador.html')
+    
+def publish_message_30s(request):
+    if request.method == 'POST':
+        text = '4'
+
+        msg = json.dumps({"topic": "tomada/mqtt", "mensagem": f"{text}"}, ensure_ascii=False)
+        request_data = json.loads(msg)
+        rc, mid = mqtt_client.publish(request_data['topic'], request_data['mensagem'])
+        return render(request, 'mqtt_app/pages/temporizador.html')
+    
+def publish_message_1m(request):
+    if request.method == 'POST':
+        text = '5'
+
+        msg = json.dumps({"topic": "tomada/mqtt", "mensagem": f"{text}"}, ensure_ascii=False)
+        request_data = json.loads(msg)
+        rc, mid = mqtt_client.publish(request_data['topic'], request_data['mensagem'])
+        return render(request, 'mqtt_app/pages/temporizador.html')
 
 
 def codigo(request):

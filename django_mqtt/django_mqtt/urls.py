@@ -28,6 +28,8 @@ urlpatterns = [
     
     path('publish_ligar/', views.publish_message_ligar, name='publish_ligar'),
     path('publish_desligar/', views.publish_message_desligar, name='publish_desligar'),
-    path('publish_temporizador/', views.publish_message_temporizador, name='publish_temporizador'),
+    path('publish_10s/', views.publish_message_10s, name='publish_10s'),
+    path('publish_30s/', views.publish_message_30s, name='publish_30s'),
+    path('publish_1m/', views.publish_message_1m, name='publish_1m'),
     path('codigo/', views.codigo, name='codigo'),
 ]

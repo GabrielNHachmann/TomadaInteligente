@@ -2,91 +2,25 @@
 <body>
     {% include 'mqtt_app/partials/sidebarheader.html' %}
 
-    <!-- 2. CONTEÚDO PRINCIPAL -->
-    <main class="flex-grow flex flex-col items-center p-4 md:p-8">
-        
-        <h1 class="text-3xl md:text-4xl font-extrabold text-primary-dark mb-1">
-            <i class="fas fa-calendar-alt text-secondary-blue mr-2"></i> Agendamentos
-        </h1>
-        <p class="text-lg text-gray-500 mb-8 max-w-lg text-center">
-            Crie regras para ligar ou desligar suas tomadas automaticamente.
-        </p>
+    <form action="{% url 'publish_10s' %}" method="POST">
+    {% csrf_token %}
+        <button type="submit" class="btn btn-primary btn-lg">
+            <i class="fas fa-plus me-2"></i> 10s
+        </button>
+    </form>
 
-        <!-- CARD DE CRIAÇÃO DE NOVO AGENDAMENTO -->
-        <div class="bg-white shadow-xl rounded-2xl p-6 md:p-8 w-full max-w-xl border border-gray-200 mb-8">
-            <h2 class="text-2xl font-bold text-primary-dark mb-6">
-                Novo Agendamento
-            </h2>
-            
-            <form id="schedule-form" action="javascript:void(0)">
-                
-                <!-- 1. SELEÇÃO DO DISPOSITIVO -->
-                <div class="mb-4">
-                    <label for="device_id" class="block font-semibold mb-1 text-gray-700">ID da Tomada</label>
-                    <input type="text" 
-                           id="device_id" 
-                           name="device_id"
-                           class="w-full p-3 border border-gray-300 rounded-lg focus:ring-secondary-blue focus:border-secondary-blue transition-all" 
-                           placeholder="Ex: SP-001-SALA"
-                           required>
-                </div>
+    <form action="{% url 'publish_30s' %}" method="POST">
+    {% csrf_token %}
+        <button type="submit" class="btn btn-primary btn-lg">
+            <i class="fas fa-plus me-2"></i> 30s
+        </button>
+    </form>
 
-                <!-- GRUPO HORÁRIO E AÇÃO -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4"> 
-                    <!-- 2. HORA DO AGENDAMENTO -->
-                    <div>
-                        <label for="schedule_time" class="block font-semibold mb-1 text-gray-700">Horário</label>
-                        <input type="time" 
-                               id="schedule_time" 
-                               name="schedule_time"
-                               class="w-full p-3 border border-gray-300 rounded-lg focus:ring-secondary-blue focus:border-secondary-blue transition-all" 
-                               required>
-                    </div>
-
-                    <!-- 3. AÇÃO (LIGAR/DESLIGAR) -->
-                    <div>
-                        <label for="schedule_action" class="block font-semibold mb-1 text-gray-700">Ação</label>
-                        <select id="schedule_action" name="schedule_action" class="w-full p-3 border border-gray-300 rounded-lg bg-white focus:ring-secondary-blue focus:border-secondary-blue transition-all" required>
-                            <option value="ON">LIGAR</option>
-                            <option value="OFF">DESLIGAR</option>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- 4. REPETIÇÃO (DIAS DA SEMANA) -->
-                <div class="mb-6">
-                    <label class="block font-semibold mb-2 text-gray-700">Repetir Semanalmente</label>
-                    <div class="flex flex-wrap justify-center sm:justify-start gap-2">
-                        <!-- Botões de Dia (Semana: S T Q Q S S D) -->
-                        <input type="checkbox" id="day-dom" name="days" value="dom" class="hidden day-checkbox" />
-                        <label for="day-dom" class="day-label bg-gray-100 hover:bg-gray-200 text-gray-700 w-10 h-10 flex items-center justify-center rounded-full cursor-pointer border-2 border-gray-300 transition-all shadow-sm">D</label>
-                        
-                        <input type="checkbox" id="day-seg" name="days" value="seg" class="hidden day-checkbox" />
-                        <label for="day-seg" class="day-label bg-gray-100 hover:bg-gray-200 text-gray-700 w-10 h-10 flex items-center justify-center rounded-full cursor-pointer border-2 border-gray-300 transition-all shadow-sm">S</label>
-
-                        <input type="checkbox" id="day-ter" name="days" value="ter" class="hidden day-checkbox" />
-                        <label for="day-ter" class="day-label bg-gray-100 hover:bg-gray-200 text-gray-700 w-10 h-10 flex items-center justify-center rounded-full cursor-pointer border-2 border-gray-300 transition-all shadow-sm">T</label>
-                        
-                        <input type="checkbox" id="day-qua" name="days" value="qua" class="hidden day-checkbox" />
-                        <label for="day-qua" class="day-label bg-gray-100 hover:bg-gray-200 text-gray-700 w-10 h-10 flex items-center justify-center rounded-full cursor-pointer border-2 border-gray-300 transition-all shadow-sm">Q</label>
-                        
-                        <input type="checkbox" id="day-qui" name="days" value="qui" class="hidden day-checkbox" />
-                        <label for="day-qui" class="day-label bg-gray-100 hover:bg-gray-200 text-gray-700 w-10 h-10 flex items-center justify-center rounded-full cursor-pointer border-2 border-gray-300 transition-all shadow-sm">Q</label>
-                        
-                        <input type="checkbox" id="day-sex" name="days" value="sex" class="hidden day-checkbox" />
-                        <label for="day-sex" class="day-label bg-gray-100 hover:bg-gray-200 text-gray-700 w-10 h-10 flex items-center justify-center rounded-full cursor-pointer border-2 border-gray-300 transition-all shadow-sm">S</label>
-
-                        <input type="checkbox" id="day-sab" name="days" value="sab" class="hidden day-checkbox" />
-                        <label for="day-sab" class="day-label bg-gray-100 hover:bg-gray-200 text-gray-700 w-10 h-10 flex items-center justify-center rounded-full cursor-pointer border-2 border-gray-300 transition-all shadow-sm">S</label>
-                    </div>
-                </div>
-
-                <button type="submit" class="w-full bg-secondary-blue text-white p-3 rounded-lg font-bold text-lg hover:bg-blue-600 transition-colors shadow-lg shadow-blue-300/50">
-                    <i class="fas fa-save mr-2"></i> Agendar Tarefa
-                </button>
-            </form>
-        </div>
-
-    </main>
+    <form action="{% url 'publish_1m' %}" method="POST">
+    {% csrf_token %}
+        <button type="submit" class="btn btn-primary btn-lg">
+            <i class="fas fa-plus me-2"></i> 1m
+        </button>
+    </form>
 </body>
 </html>
