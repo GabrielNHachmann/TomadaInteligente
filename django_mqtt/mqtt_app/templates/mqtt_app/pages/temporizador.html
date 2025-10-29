@@ -1,26 +1,40 @@
 {% include 'mqtt_app/partials/doctype.html' %}
-<body>
-    {% include 'mqtt_app/partials/sidebarheader.html' %}
+{% include 'mqtt_app/partials/sidebarheader.html' %}
 
-    <form action="{% url 'publish_10s' %}" method="POST">
-    {% csrf_token %}
-        <button type="submit" class="btn btn-primary btn-lg">
-            <i class="fas fa-plus me-2"></i> 10s
-        </button>
-    </form>
+<body class="p-8">
 
-    <form action="{% url 'publish_30s' %}" method="POST">
-    {% csrf_token %}
-        <button type="submit" class="btn btn-primary btn-lg">
-            <i class="fas fa-plus me-2"></i> 30s
-        </button>
-    </form>
+    <div class="card-container flex flex-col justify-center items-center space-y-8 p-12 rounded-xl shadow-2xl">
+        
+        <!-- Timer Title -->
+        <h1 class="text-4xl font-extrabold text-gray-800 mb-4 border-b-4 border-blue-500 pb-2">Temporizador</h1>
+        
+        <!-- Button container (row on desktop, column on mobile) -->
+        <div class="flex flex-col md:flex-row space-y-6 md:space-y-0 md:space-x-10">
+            <!-- 10s Button -->
+            <form action="{% url 'publish_10s' %}" method="POST">
+                {% csrf_token %}
+                <button type="submit" class="timer-standard-button">
+                    <i class="fas fa-plus"></i> 10s
+                </button>
+            </form>
+    
+            <!-- 30s Button -->
+            <form action="{% url 'publish_30s' %}" method="POST">
+                {% csrf_token %}
+                <button type="submit" class="timer-standard-button">
+                    <i class="fas fa-plus"></i> 30s
+                </button>
+            </form>
+    
+            <!-- 1m Button -->
+            <form action="{% url 'publish_1m' %}" method="POST">
+                {% csrf_token %}
+                <button type="submit" class="timer-standard-button">
+                    <i class="fas fa-plus"></i> 1m
+                </button>
+            </form>
+        </div>
+    </div>
 
-    <form action="{% url 'publish_1m' %}" method="POST">
-    {% csrf_token %}
-        <button type="submit" class="btn btn-primary btn-lg">
-            <i class="fas fa-plus me-2"></i> 1m
-        </button>
-    </form>
 </body>
 </html>
